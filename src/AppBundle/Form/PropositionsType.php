@@ -26,8 +26,20 @@ class PropositionsType extends AbstractType
                     'No' => false,
 
                 )))
-            ->add('codeclasse')
-            ->add('codetechnololgie');
+            ->add('codeclasse',ChoiceType::class, array(
+                'choices'  => array(
+                    'Maybe' => null,
+                    'Yes' => true,
+                    'No' => false,
+
+                )))
+            ->add('codetechnololgie',ChoiceType::class, array(
+                'choices'  => array(
+                    'Maybe' => null,
+                    'Yes' => true,
+                    'No' => false,
+
+                )));
     }/**
      * {@inheritdoc}
      */

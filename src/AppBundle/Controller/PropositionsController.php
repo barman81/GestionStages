@@ -6,6 +6,7 @@ use AppBundle\Entity\Propositions;
 use AppBundle\Form\PropositionsType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 class PropositionsController extends Controller
 {
@@ -30,5 +31,33 @@ class PropositionsController extends Controller
         //on rend la vue
         return $this->render('propositionAdd.html.twig', array('form'=>$formView));
 
+    }
+
+    /**
+     *
+     * @Route("/show/{id}", name="afficherPropositionbyid", requirements={"id"="\d+"})
+     *
+     */
+
+    public function showPropositionById($id)
+    {
+        $proposition = $this->getDoctrine()
+            ->getRepository('AppBundle:Propositions')
+            ->find($id);
+
+        return new Response($proposition->getTitreproposition());
+    }
+    /**
+     *
+     * @Route("/show", name="afficherProposition")
+     *
+     */
+    public function showProposition()
+    {
+        $proposition = $this->getDoctrine()
+            ->getRepository('AppBundle:Propositions')
+            ->findAll();
+
+        return new Response(count($proposition). "propositions ");
     }
 }
