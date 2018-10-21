@@ -76,5 +76,154 @@ class Propositions
         $this->codetechnololgie = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-}
 
+    /**
+     * Set titreproposition
+     *
+     * @param string $titreproposition
+     *
+     * @return Propositions
+     */
+    public function setTitreproposition($titreproposition)
+    {
+        $this->titreproposition = $titreproposition;
+
+        return $this;
+    }
+
+    /**
+     * Get titreproposition
+     *
+     * @return string
+     */
+    public function getTitreproposition()
+    {
+        return $this->titreproposition;
+    }
+
+    /**
+     * Set descriptionproposition
+     *
+     * @param string $descriptionproposition
+     *
+     * @return Propositions
+     */
+    public function setDescriptionproposition($descriptionproposition)
+    {
+        $this->descriptionproposition = $descriptionproposition;
+
+        return $this;
+    }
+
+    /**
+     * Get descriptionproposition
+     *
+     * @return string
+     */
+    public function getDescriptionproposition()
+    {
+        return $this->descriptionproposition;
+    }
+
+    /**
+     * Get codeproposition
+     *
+     * @return integer
+     */
+    public function getCodeproposition()
+    {
+        return $this->codeproposition;
+    }
+
+    /**
+     * Set codeentreprise
+     *
+     * @param \AppBundle\Entity\Entreprises $codeentreprise
+     *
+     * @return Propositions
+     */
+    public function setCodeentreprise(\AppBundle\Entity\Entreprises $codeentreprise = null)
+    {
+        $this->codeentreprise = $codeentreprise;
+
+        return $this;
+    }
+
+    /**
+     * Get codeentreprise
+     *
+     * @return \AppBundle\Entity\Entreprises
+     */
+    public function getCodeentreprise()
+    {
+        return $this->codeentreprise;
+    }
+
+    /**
+     * Add codeclasse
+     *
+     * @param \AppBundle\Entity\Classes $codeclasse
+     *
+     * @return Propositions
+     */
+    public function addCodeclasse(\AppBundle\Entity\Classes $codeclasse)
+    {
+        $this->codeclasse[] = $codeclasse;
+
+        return $this;
+    }
+
+    /**
+     * Remove codeclasse
+     *
+     * @param \AppBundle\Entity\Classes $codeclasse
+     */
+    public function removeCodeclasse(\AppBundle\Entity\Classes $codeclasse)
+    {
+        $this->codeclasse->removeElement($codeclasse);
+    }
+
+    /**
+     * Get codeclasse
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCodeclasse()
+    {
+        return $this->codeclasse;
+    }
+
+    /**
+     * Add codetechnololgie
+     *
+     * @param \AppBundle\Entity\Technologies $codetechnololgie
+     *
+     * @return Propositions
+     */
+    public function addCodetechnololgie(\AppBundle\Entity\Technologies $codetechnololgie)
+    {
+        $this->codetechnololgie[] = $codetechnololgie;
+
+        return $this;
+    }
+
+    /**
+     * Remove codetechnololgie
+     *
+     * @param \AppBundle\Entity\Technologies $codetechnololgie
+     */
+    public function removeCodetechnololgie(\AppBundle\Entity\Technologies $codetechnololgie)
+    {
+        $this->codetechnololgie->removeElement($codetechnololgie);
+    }
+
+    /**
+     * Get codetechnololgie
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCodetechnololgie()
+    {
+        return $this->codetechnololgie;
+    }
+}

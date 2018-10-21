@@ -64,5 +64,144 @@ class Contacts
         $this->codeentreprise = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-}
 
+    /**
+     * Set nomcontact
+     *
+     * @param string $nomcontact
+     *
+     * @return Contacts
+     */
+    public function setNomcontact($nomcontact)
+    {
+        $this->nomcontact = $nomcontact;
+
+        return $this;
+    }
+
+    /**
+     * Get nomcontact
+     *
+     * @return string
+     */
+    public function getNomcontact()
+    {
+        return $this->nomcontact;
+    }
+
+    /**
+     * Set prenomcontact
+     *
+     * @param string $prenomcontact
+     *
+     * @return Contacts
+     */
+    public function setPrenomcontact($prenomcontact)
+    {
+        $this->prenomcontact = $prenomcontact;
+
+        return $this;
+    }
+
+    /**
+     * Get prenomcontact
+     *
+     * @return string
+     */
+    public function getPrenomcontact()
+    {
+        return $this->prenomcontact;
+    }
+
+    /**
+     * Set mailcontact
+     *
+     * @param string $mailcontact
+     *
+     * @return Contacts
+     */
+    public function setMailcontact($mailcontact)
+    {
+        $this->mailcontact = $mailcontact;
+
+        return $this;
+    }
+
+    /**
+     * Get mailcontact
+     *
+     * @return string
+     */
+    public function getMailcontact()
+    {
+        return $this->mailcontact;
+    }
+
+    /**
+     * Set telcontact
+     *
+     * @param string $telcontact
+     *
+     * @return Contacts
+     */
+    public function setTelcontact($telcontact)
+    {
+        $this->telcontact = $telcontact;
+
+        return $this;
+    }
+
+    /**
+     * Get telcontact
+     *
+     * @return string
+     */
+    public function getTelcontact()
+    {
+        return $this->telcontact;
+    }
+
+    /**
+     * Get codecontact
+     *
+     * @return integer
+     */
+    public function getCodecontact()
+    {
+        return $this->codecontact;
+    }
+
+    /**
+     * Add codeentreprise
+     *
+     * @param \AppBundle\Entity\Entreprises $codeentreprise
+     *
+     * @return Contacts
+     */
+    public function addCodeentreprise(\AppBundle\Entity\Entreprises $codeentreprise)
+    {
+        $this->codeentreprise[] = $codeentreprise;
+
+        return $this;
+    }
+
+    /**
+     * Remove codeentreprise
+     *
+     * @param \AppBundle\Entity\Entreprises $codeentreprise
+     */
+    public function removeCodeentreprise(\AppBundle\Entity\Entreprises $codeentreprise)
+    {
+        $this->codeentreprise->removeElement($codeentreprise);
+    }
+
+    /**
+     * Get codeentreprise
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCodeentreprise()
+    {
+        return $this->codeentreprise;
+    }
+}

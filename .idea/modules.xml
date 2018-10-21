@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/GestionStages.iml" filepath="$PROJECT_DIR$/.idea/GestionStages.iml" />
       <module fileurl="file://$PROJECT_DIR$/../createForm/.idea/createForm.iml" filepath="$PROJECT_DIR$/../createForm/.idea/createForm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../stages-iutmontpellier/.idea/stages-iutmontpellier.iml" filepath="$PROJECT_DIR$/../stages-iutmontpellier/.idea/stages-iutmontpellier.iml" />
     </modules>
   </component>
 </project>

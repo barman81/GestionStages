@@ -11,7 +11,7 @@ class PropositionsController extends Controller
 {
     /**
      *
-     * @Route("/add, name="addProposition")
+     * @Route("/add", name="addProposition")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
