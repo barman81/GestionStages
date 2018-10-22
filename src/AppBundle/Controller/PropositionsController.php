@@ -45,7 +45,7 @@ class PropositionsController extends Controller
             ->getRepository('AppBundle:Propositions')
             ->find($id);
 
-        return new Response($proposition->getTitreproposition());
+        return $this->render('propositionShow.html.twig',['proposition' => $proposition]);
     }
     /**
      *
@@ -59,6 +59,6 @@ class PropositionsController extends Controller
             ->getRepository(Propositions::class)
             ->findAll();
 
-        return $this->render('propositionShow.html.twig',['propositions' => $propositions]);
+        return $this->render('propositionsShow.html.twig',['propositions' => $propositions]);
     }
 }

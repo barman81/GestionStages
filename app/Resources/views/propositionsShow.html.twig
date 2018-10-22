@@ -12,19 +12,21 @@
             <div class="col-md-8">
 
                 <h1 class="my-4">Lister les Propositions</h1>
+                {% for uneProposition in propositions  %}
                 <!-- Blog Post -->
                 <div class="card mb-4">
                     <img class="card-img-top" src="https://picsum.photos/750/300/?random" alt="Card image cap">
                     <div class="card-body">
-                        <h2 class="card-title">{{ proposition.titreproposition }}</h2>
-                        <p class="card-text">{{ proposition.descriptionproposition }}</p>
-
+                        <h2 class="card-title">{{ uneProposition.titreproposition }}</h2>
+                        <p class="card-text">{{ uneProposition.descriptionproposition }}</p>
+                        <a href="show/{{ uneProposition.codeproposition}}" class="btn btn-primary">Read More &rarr;</a>
                     </div>
                     <div class="card-footer text-muted">
                         Posted on January 1, 2017 by
                         <a href="#">Start Bootstrap</a>
                     </div>
                 </div>
+                {% endfor %}
                 <!-- Pagination -->
                 <ul class="pagination justify-content-center mb-4">
                     <li class="page-item">
