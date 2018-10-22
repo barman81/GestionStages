@@ -46,8 +46,4 @@
 
 # Embedded web-server pid file
 /.web-server-pid
-.idea/dataSources.local.xml
-.idea/dataSources/cc57decb-e792-4799-8b72-574d769b4297.xml
-.idea/workspace.xml
-.idea/workspace.xml
-.idea/workspace.xml
+.idea/
