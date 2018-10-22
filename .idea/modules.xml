@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/GestionStages.iml" filepath="$PROJECT_DIR$/.idea/GestionStages.iml" />
       <module fileurl="file://$PROJECT_DIR$/../createForm/.idea/createForm.iml" filepath="$PROJECT_DIR$/../createForm/.idea/createForm.iml" />
       <module fileurl="file://$PROJECT_DIR$/../stages-iutmontpellier/.idea/stages-iutmontpellier.iml" filepath="$PROJECT_DIR$/../stages-iutmontpellier/.idea/stages-iutmontpellier.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../Bootstrap/startbootstrap-blog-home-gh-pages/.idea/startbootstrap-blog-home-gh-pages.iml" filepath="$PROJECT_DIR$/../../Bootstrap/startbootstrap-blog-home-gh-pages/.idea/startbootstrap-blog-home-gh-pages.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../symfony/symfony_demo/.idea/symfony_demo.iml" filepath="$PROJECT_DIR$/../symfony/symfony_demo/.idea/symfony_demo.iml" />
     </modules>
   </component>
 </project>

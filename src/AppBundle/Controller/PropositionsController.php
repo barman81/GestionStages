@@ -54,10 +54,11 @@ class PropositionsController extends Controller
      */
     public function showProposition()
     {
-        $proposition = $this->getDoctrine()
-            ->getRepository('AppBundle:Propositions')
+        $em = $this->getDoctrine()->getManager();
+        $propositions = $this->getDoctrine()
+            ->getRepository(Propositions::class)
             ->findAll();
 
-        return new Response(count($proposition). "propositions ");
+        return $this->render('propositionShow.html.twig',['propositions' => $propositions]);
     }
 }

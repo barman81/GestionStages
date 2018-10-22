@@ -49,5 +49,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="createForm" />
     <orderEntry type="module" module-name="stages-iutmontpellier" />
+    <orderEntry type="module" module-name="symfony_demo" />
+    <orderEntry type="module" module-name="startbootstrap-blog-home-gh-pages" />
   </component>
 </module>
