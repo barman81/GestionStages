@@ -35,7 +35,7 @@ class EntreprisesController extends Controller
        $form->handleRequest($request);
 
        //si le formulaire est validé
-        if($form->isSubmitted()){
+        if($form->isSubmitted() && $form->isValid()){
             // on enregistre l'entreprise en BDD
             $em = $this->getDoctrine()->getManager();
 
