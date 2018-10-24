@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 21 oct. 2018 à 12:02
+-- Généré le :  mer. 24 oct. 2018 à 10:08
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -64,6 +64,28 @@ CREATE TABLE IF NOT EXISTS `associerentreprisescontact` (
 INSERT INTO `associerentreprisescontact` (`codeEntreprise`, `codeContact`) VALUES
 (1, 1),
 (1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `associerentreprisesdomaine`
+--
+
+DROP TABLE IF EXISTS `associerentreprisesdomaine`;
+CREATE TABLE IF NOT EXISTS `associerentreprisesdomaine` (
+  `codeEntreprise` int(11) NOT NULL,
+  `codeDomaine` int(11) NOT NULL,
+  PRIMARY KEY (`codeEntreprise`,`codeDomaine`),
+  KEY `fk_codeDomaineEntreprise` (`codeDomaine`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `associerentreprisesdomaine`
+--
+
+INSERT INTO `associerentreprisesdomaine` (`codeEntreprise`, `codeDomaine`) VALUES
+(1, 2),
+(1, 3);
 
 -- --------------------------------------------------------
 
@@ -135,6 +157,28 @@ INSERT INTO `contacts` (`codeContact`, `nomContact`, `prenomContact`, `mailConta
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `domaineactivite`
+--
+
+DROP TABLE IF EXISTS `domaineactivite`;
+CREATE TABLE IF NOT EXISTS `domaineactivite` (
+  `codeDomaine` int(11) NOT NULL AUTO_INCREMENT,
+  `nomDomaine` varchar(50) NOT NULL,
+  PRIMARY KEY (`codeDomaine`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `domaineactivite`
+--
+
+INSERT INTO `domaineactivite` (`codeDomaine`, `nomDomaine`) VALUES
+(1, 'Jeux Vidéo'),
+(2, 'Comptabilité'),
+(3, 'Streaming');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `entreprises`
 --
 
@@ -147,14 +191,38 @@ CREATE TABLE IF NOT EXISTS `entreprises` (
   `codePostalEntreprise` int(5) NOT NULL,
   `telEntreprise` char(10) NOT NULL,
   PRIMARY KEY (`codeEntreprise`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `entreprises`
 --
 
 INSERT INTO `entreprises` (`codeEntreprise`, `nomEntreprise`, `adresseEntreprise`, `villeEntreprise`, `codePostalEntreprise`, `telEntreprise`) VALUES
-(1, 'ToHero', '1 rue Emile Ain', 'Montpellier', 34090, '0642520665');
+(1, 'ToHero', '1 rue Emile Ain', 'Montpellier', 34090, '0642520665'),
+(3, 'Hyppocampe', '2 Avenue de Lamere', 'Valras', 34420, '785351565'),
+(4, 'CGI', '8 rue Georges Freche', 'Montpellier', 34096, '0658653145');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `fichiers`
+--
+
+DROP TABLE IF EXISTS `fichiers`;
+CREATE TABLE IF NOT EXISTS `fichiers` (
+  `codeFichier` int(11) NOT NULL AUTO_INCREMENT,
+  `urlFichier` varchar(500) NOT NULL,
+  `codeProposition` int(11) NOT NULL,
+  PRIMARY KEY (`codeFichier`),
+  KEY `fk_codePropositionFichier` (`codeProposition`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `fichiers`
+--
+
+INSERT INTO `fichiers` (`codeFichier`, `urlFichier`, `codeProposition`) VALUES
+(1, 'c:/documents/fichier.pdf', 1);
 
 -- --------------------------------------------------------
 
@@ -167,17 +235,21 @@ CREATE TABLE IF NOT EXISTS `propositions` (
   `codeProposition` int(11) NOT NULL AUTO_INCREMENT,
   `titreProposition` varchar(30) NOT NULL,
   `descriptionProposition` varchar(1000) NOT NULL,
+  `dateAjout` date NOT NULL,
+  `etat` enum('En attente de validation','Validé','Affecté','Archivé') NOT NULL DEFAULT 'En attente de validation',
+  `commentaire` varchar(1000) DEFAULT NULL,
   `codeEntreprise` int(11) NOT NULL,
   PRIMARY KEY (`codeProposition`),
   KEY `fk_codeEntreprise` (`codeEntreprise`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `propositions`
 --
 
-INSERT INTO `propositions` (`codeProposition`, `titreProposition`, `descriptionProposition`, `codeEntreprise`) VALUES
-(1, 'Developpeur Web - PHP/JAVA', 'Vous serez amenez à développer dans une équipe de développeur sur le site officiel de WAKANIM pour mettre à jour les fonctionnalités du site', 1);
+INSERT INTO `propositions` (`codeProposition`, `titreProposition`, `descriptionProposition`, `dateAjout`, `etat`, `commentaire`, `codeEntreprise`) VALUES
+(1, 'Developpeur WEB - PHP/JAVA', 'Vous serez amenez à développer dans une équipe de développeur sur le site officiel de WAKANIM pour mettre à jour les fonctionnalités du site', '2018-10-22', 'En attente de validation', NULL, 1),
+(2, 'Developpeur JAVA (Oracle)', 'Vous devrez développer dans une peite équipe un logiciel comptable en JAVA sous Oracle', '2018-10-23', 'En attente de validation', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -220,11 +292,24 @@ ALTER TABLE `associerentreprisescontact`
   ADD CONSTRAINT `fk_codeEntrepriseContact` FOREIGN KEY (`codeEntreprise`) REFERENCES `entreprises` (`codeEntreprise`);
 
 --
+-- Contraintes pour la table `associerentreprisesdomaine`
+--
+ALTER TABLE `associerentreprisesdomaine`
+  ADD CONSTRAINT `fk_codeDomaineEntreprise` FOREIGN KEY (`codeDomaine`) REFERENCES `domaineactivite` (`codeDomaine`),
+  ADD CONSTRAINT `fk_codeEntrepriseDomaine` FOREIGN KEY (`codeEntreprise`) REFERENCES `entreprises` (`codeEntreprise`);
+
+--
 -- Contraintes pour la table `associertechnologiespropositions`
 --
 ALTER TABLE `associertechnologiespropositions`
   ADD CONSTRAINT `fk_codePropositionTechnologie` FOREIGN KEY (`codeProposition`) REFERENCES `propositions` (`codeProposition`),
   ADD CONSTRAINT `fk_codeTechnologieProposition` FOREIGN KEY (`codeTechnololgie`) REFERENCES `technologies` (`codeTechnololgie`);
+
+--
+-- Contraintes pour la table `fichiers`
+--
+ALTER TABLE `fichiers`
+  ADD CONSTRAINT `fk_codePropositionFichier` FOREIGN KEY (`codeProposition`) REFERENCES `propositions` (`codeProposition`);
 
 --
 -- Contraintes pour la table `propositions`
