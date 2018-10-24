@@ -4,7 +4,6 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 use Symfony\Component\Form\AbstractType;
@@ -22,7 +21,7 @@ class EntreprisesType extends AbstractType
             ->add('nomentreprise', TextType::class)
             ->add('adresseentreprise', TextType::class)
             ->add('villeentreprise', TextType::class)
-            ->add('codepostalentreprise', IntegerType::class)
+            ->add('codepostalentreprise', TextType::class)
             ->add('telentreprise',TelType::class);
     }/**
      * {@inheritdoc}
