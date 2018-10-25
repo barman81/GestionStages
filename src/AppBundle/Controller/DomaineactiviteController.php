@@ -95,4 +95,18 @@ class DomaineactiviteController extends Controller
         return $this->render('domainesActivites/domainesActivitesAdd.html.twig', array('form'=>$formView));
     }
 
+    /**
+     * @return Response
+     * @Route("/domaineactivite/delete/{id}", name="deleteDomaineActivite")
+     *
+     *
+     */
+
+    public function delete(Domaineactivite $domaineactivite){
+        $em = $this-> getDoctrine()->getManager();
+        $em->remove($domaineactivite);
+        $em->flush();
+        return new Response('Domaine Supprimé !');
+    }
+
 }
