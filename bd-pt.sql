@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 24 oct. 2018 à 10:08
+-- Généré le :  jeu. 25 oct. 2018 à 08:59
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -189,9 +189,9 @@ CREATE TABLE IF NOT EXISTS `entreprises` (
   `adresseEntreprise` varchar(60) NOT NULL,
   `villeEntreprise` varchar(30) NOT NULL,
   `codePostalEntreprise` int(5) NOT NULL,
-  `telEntreprise` char(10) NOT NULL,
+  `telEntreprise` char(14) NOT NULL,
   PRIMARY KEY (`codeEntreprise`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `entreprises`
@@ -200,7 +200,31 @@ CREATE TABLE IF NOT EXISTS `entreprises` (
 INSERT INTO `entreprises` (`codeEntreprise`, `nomEntreprise`, `adresseEntreprise`, `villeEntreprise`, `codePostalEntreprise`, `telEntreprise`) VALUES
 (1, 'ToHero', '1 rue Emile Ain', 'Montpellier', 34090, '0642520665'),
 (3, 'Hyppocampe', '2 Avenue de Lamere', 'Valras', 34420, '785351565'),
-(4, 'CGI', '8 rue Georges Freche', 'Montpellier', 34096, '0658653145');
+(4, 'CGI', '8 rue Georges Freche', 'Montpellier', 34096, '0658653145'),
+(5, 'Kaliop', '7 rue Ponpidou', 'Montpellier', 34090, '04.95.45.65.23');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `etat`
+--
+
+DROP TABLE IF EXISTS `etat`;
+CREATE TABLE IF NOT EXISTS `etat` (
+  `codeEtat` int(11) NOT NULL AUTO_INCREMENT,
+  `nomEtat` varchar(40) NOT NULL,
+  PRIMARY KEY (`codeEtat`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `etat`
+--
+
+INSERT INTO `etat` (`codeEtat`, `nomEtat`) VALUES
+(1, 'En attente de validation'),
+(2, 'Validé'),
+(3, 'Affecté'),
+(4, 'Archivé');
 
 -- --------------------------------------------------------
 
@@ -236,20 +260,21 @@ CREATE TABLE IF NOT EXISTS `propositions` (
   `titreProposition` varchar(30) NOT NULL,
   `descriptionProposition` varchar(1000) NOT NULL,
   `dateAjout` date NOT NULL,
-  `etat` enum('En attente de validation','Validé','Affecté','Archivé') NOT NULL DEFAULT 'En attente de validation',
   `commentaire` varchar(1000) DEFAULT NULL,
   `codeEntreprise` int(11) NOT NULL,
+  `codeEtat` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`codeProposition`),
-  KEY `fk_codeEntreprise` (`codeEntreprise`)
+  KEY `fk_codeEntreprise` (`codeEntreprise`),
+  KEY `fk_codeEtat` (`codeEtat`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `propositions`
 --
 
-INSERT INTO `propositions` (`codeProposition`, `titreProposition`, `descriptionProposition`, `dateAjout`, `etat`, `commentaire`, `codeEntreprise`) VALUES
-(1, 'Developpeur WEB - PHP/JAVA', 'Vous serez amenez à développer dans une équipe de développeur sur le site officiel de WAKANIM pour mettre à jour les fonctionnalités du site', '2018-10-22', 'En attente de validation', NULL, 1),
-(2, 'Developpeur JAVA (Oracle)', 'Vous devrez développer dans une peite équipe un logiciel comptable en JAVA sous Oracle', '2018-10-23', 'En attente de validation', NULL, 1);
+INSERT INTO `propositions` (`codeProposition`, `titreProposition`, `descriptionProposition`, `dateAjout`, `commentaire`, `codeEntreprise`, `codeEtat`) VALUES
+(1, 'Developpeur WEB - PHP/JAVA', 'Vous serez amenez à développer dans une équipe de développeur sur le site officiel de WAKANIM pour mettre à jour les fonctionnalités du site', '2018-10-22', NULL, 1, 1),
+(2, 'Developpeur JAVA (Oracle)', 'Vous devrez développer dans une peite équipe un logiciel comptable en JAVA sous Oracle', '2018-10-23', NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -315,7 +340,8 @@ ALTER TABLE `fichiers`
 -- Contraintes pour la table `propositions`
 --
 ALTER TABLE `propositions`
-  ADD CONSTRAINT `fk_codeEntreprise` FOREIGN KEY (`codeEntreprise`) REFERENCES `entreprises` (`codeEntreprise`);
+  ADD CONSTRAINT `fk_codeEntreprise` FOREIGN KEY (`codeEntreprise`) REFERENCES `entreprises` (`codeEntreprise`),
+  ADD CONSTRAINT `fk_codeEtat` FOREIGN KEY (`codeEtat`) REFERENCES `etat` (`codeEtat`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

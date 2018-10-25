@@ -271,4 +271,43 @@ class Entreprises
     {
         return $this->codecontact;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $codedomaine;
+
+
+    /**
+     * Add codedomaine
+     *
+     * @param \AppBundle\Entity\Domaineactivite $codedomaine
+     *
+     * @return Entreprises
+     */
+    public function addCodedomaine(\AppBundle\Entity\Domaineactivite $codedomaine)
+    {
+        $this->codedomaine[] = $codedomaine;
+
+        return $this;
+    }
+
+    /**
+     * Remove codedomaine
+     *
+     * @param \AppBundle\Entity\Domaineactivite $codedomaine
+     */
+    public function removeCodedomaine(\AppBundle\Entity\Domaineactivite $codedomaine)
+    {
+        $this->codedomaine->removeElement($codedomaine);
+    }
+
+    /**
+     * Get codedomaine
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCodedomaine()
+    {
+        return $this->codedomaine;
+    }
 }

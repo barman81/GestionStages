@@ -226,4 +226,91 @@ class Propositions
     {
         return $this->codetechnololgie;
     }
+    /**
+     * @var \DateTime
+     */
+    private $dateajout;
+
+    /**
+     * @var string
+     */
+    private $commentaire;
+
+    /**
+     * @var \AppBundle\Entity\Etat
+     */
+    private $codeetat;
+
+
+    /**
+     * Set dateajout
+     *
+     * @param \DateTime $dateajout
+     *
+     * @return Propositions
+     */
+    public function setDateajout($dateajout)
+    {
+        $this->dateajout = $dateajout;
+
+        return $this;
+    }
+
+    /**
+     * Get dateajout
+     *
+     * @return \DateTime
+     */
+    public function getDateajout()
+    {
+        return $this->dateajout;
+    }
+
+    /**
+     * Set commentaire
+     *
+     * @param string $commentaire
+     *
+     * @return Propositions
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return string
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+
+    /**
+     * Set codeetat
+     *
+     * @param \AppBundle\Entity\Etat $codeetat
+     *
+     * @return Propositions
+     */
+    public function setCodeetat(\AppBundle\Entity\Etat $codeetat = null)
+    {
+        $this->codeetat = $codeetat;
+
+        return $this;
+    }
+
+    /**
+     * Get codeetat
+     *
+     * @return \AppBundle\Entity\Etat
+     */
+    public function getCodeetat()
+    {
+        return $this->codeetat;
+    }
 }

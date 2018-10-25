@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Domaineactivite" table="domaineactivite">
+    <id name="codedomaine" type="integer" column="codeDomaine">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nomdomaine" type="string" column="nomDomaine" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-many field="codeentreprise" target-entity="Entreprises" mapped-by="codedomaine" fetch="LAZY"/>
+  </entity>
+</doctrine-mapping>

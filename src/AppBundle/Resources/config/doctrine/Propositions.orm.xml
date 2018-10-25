@@ -3,6 +3,7 @@
   <entity name="AppBundle\Entity\Propositions" table="propositions">
     <indexes>
       <index name="fk_codeEntreprise" columns="codeEntreprise"/>
+      <index name="fk_codeEtat" columns="codeEtat"/>
     </indexes>
     <id name="codeproposition" type="integer" column="codeProposition">
       <generator strategy="IDENTITY"/>
@@ -17,9 +18,20 @@
         <option name="fixed"/>
       </options>
     </field>
+    <field name="dateajout" type="date" column="dateAjout" nullable="false"/>
+    <field name="commentaire" type="string" column="commentaire" length="1000" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
     <many-to-one field="codeentreprise" target-entity="Entreprises" fetch="LAZY">
       <join-columns>
         <join-column name="codeEntreprise" referenced-column-name="codeEntreprise"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="codeetat" target-entity="Etat" fetch="LAZY">
+      <join-columns>
+        <join-column name="codeEtat" referenced-column-name="codeEtat"/>
       </join-columns>
     </many-to-one>
     <many-to-many field="codeclasse" target-entity="Classes" inversed-by="codeproposition" fetch="LAZY">
