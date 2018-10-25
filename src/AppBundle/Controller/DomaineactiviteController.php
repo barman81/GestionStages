@@ -53,4 +53,46 @@ class DomaineactiviteController extends Controller
 
     }
 
+    /**
+     *
+     * @Route("/domaineactivite/show", name="showDomaineActivite")
+     *
+     */
+    public function showDomaineActivite(){
+        $domainesActivites = $this->getDoctrine()->getRepository('AppBundle:Domaineactivite')->findAll();
+
+        return $this->render('domainesActivitesShow.html.twig',['domainesActivites'=>$domainesActivites]);
+    }
+
+    /**
+     * @return Response
+     * @Route("/domaineactivite/edit/{id}", name="editDomaineActivite")
+     *
+     */
+    public function edit(Request $request, Domaineactivite $domaineactivite){
+        $form = $this->createForm(DomaineactiviteType::class, $domaineactivite);
+
+        $form->handleRequest($request);
+
+        //si le formulaire a été soumis
+
+        if($form->isSubmitted()){
+
+            //on enregistre le domaine d'activité dans la bdd
+            $em = $this-> getDoctrine()->getManager();
+            $em->flush();
+
+            //A la place d'une reponse, il faut renvoyer une vue ! (style avec la liste des domaines...)
+            return new Response('Domaine modifié !');
+
+        }
+
+
+        //On génére le fichier final
+        $formView = $form->createView();
+
+        //on rend la vue
+        return $this->render('domaineActAdd.html.twig', array('form'=>$formView));
+    }
+
 }
