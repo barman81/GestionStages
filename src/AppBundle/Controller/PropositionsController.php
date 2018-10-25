@@ -55,9 +55,15 @@ class PropositionsController extends Controller
     public function showProposition()
     {
         $em = $this->getDoctrine()->getManager();
-        $propositions = $this->getDoctrine()
-            ->getRepository(Propositions::class)
-            ->findAll();
+        $repository = $this->getDoctrine()
+            ->getRepository(Propositions::class);
+
+        $query = $repository->createQueryBuilder('p')
+	        ->where('p.codeetat = 2')
+	        ->orderBy('p.dateajout', 'DESC')
+	        ->getQuery();
+
+        $propositions = $query->getResult();
 
         return $this->render('propositionsShow.html.twig',['propositions' => $propositions]);
     }
