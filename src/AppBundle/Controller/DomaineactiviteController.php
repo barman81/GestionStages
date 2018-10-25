@@ -49,7 +49,7 @@ class DomaineactiviteController extends Controller
         $formView = $form->createView();
 
         //on rend la vue
-        return $this->render('domaineActAdd.html.twig', array('form'=>$formView));
+        return $this->render('domainesActivitesShow.html.twig', array('form'=>$formView));
 
     }
 
@@ -92,7 +92,7 @@ class DomaineactiviteController extends Controller
         $formView = $form->createView();
 
         //on rend la vue
-        return $this->render('domaineActAdd.html.twig', array('form'=>$formView));
+        return $this->render('domainesActivitesAdd.html.twig', array('form'=>$formView));
     }
 
 }
