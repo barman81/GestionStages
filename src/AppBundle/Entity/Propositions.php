@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Propositions
@@ -66,6 +67,23 @@ class Propositions
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Technologies", mappedBy="codeproposition")
      */
     private $codetechnololgie;
+
+	/**
+	 * @ORM\Column(type="string")
+	 *
+	 * @Assert\File(mimeTypes={ "application/pdf" })
+	 */
+	private $file;
+
+
+	public function getFile() {
+		return $this->file;
+	}
+
+
+	public function setFile($file) {
+		$this->file = $file;
+	}
 
     /**
      * Constructor

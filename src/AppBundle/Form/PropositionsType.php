@@ -4,12 +4,12 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\Entreprises;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class PropositionsType extends AbstractType
 {
@@ -35,7 +35,8 @@ class PropositionsType extends AbstractType
 	            'choice_label' => 'nomtechnologie',
 	            'multiple' => true,
 	            'expanded' => true,
-            ));
+            ))
+            ->add('file', FileType::class, array('label' => 'Fiche de poste (PDF)'));
     }/**
      * {@inheritdoc}
      */
