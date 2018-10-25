@@ -28,11 +28,13 @@ class PropositionsType extends AbstractType
                 'class' => 'AppBundle:Classes',
 	            'choice_label' => 'nomclasse',
 	            'multiple' => true,
+	            'expanded' => true,
                 ))
             ->add('codetechnololgie',EntityType::class, array(
                 'class' => 'AppBundle:Technologies',
 	            'choice_label' => 'nomtechnologie',
 	            'multiple' => true,
+	            'expanded' => true,
             ));
     }/**
      * {@inheritdoc}
