@@ -83,7 +83,7 @@ class DomaineactiviteController extends Controller
             $em->flush();
 
             //A la place d'une reponse, il faut renvoyer une vue ! (style avec la liste des domaines...)
-            return new Response('Domaine modifié !');
+            return new Response('Domaine Modifié !');
 
         }
 
