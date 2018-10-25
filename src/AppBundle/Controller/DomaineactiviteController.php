@@ -49,7 +49,7 @@ class DomaineactiviteController extends Controller
         $formView = $form->createView();
 
         //on rend la vue
-        return $this->render('domainesActivitesAdd.html.twig', array('form'=>$formView));
+        return $this->render('domainesActivites/domainesActivitesAdd.html.twig', array('form'=>$formView));
 
     }
 
@@ -61,7 +61,7 @@ class DomaineactiviteController extends Controller
     public function showDomaineActivite(){
         $domainesActivites = $this->getDoctrine()->getRepository('AppBundle:Domaineactivite')->findAll();
 
-        return $this->render('domainesActivitesShow.html.twig',['domainesActivites'=>$domainesActivites]);
+        return $this->render('domainesActivites/domainesActivitesShow.html.twig',['domainesActivites'=>$domainesActivites]);
     }
 
     /**
@@ -92,7 +92,7 @@ class DomaineactiviteController extends Controller
         $formView = $form->createView();
 
         //on rend la vue
-        return $this->render('domainesActivitesAdd.html.twig', array('form'=>$formView));
+        return $this->render('domainesActivites/domainesActivitesAdd.html.twig', array('form'=>$formView));
     }
 
 }
