@@ -47,7 +47,7 @@ class EntreprisesController extends Controller
 
             // On affiche message de validation dans le formulaire de redirection
             $this->get('session')->getFlashBag()->add('notice','Entreprise ('.$entreprise->getNomentreprise().') ajouté !');
-            return $this->redirect($this->generateUrl('showEntreprise'));
+            return $this->redirect($this->generateUrl('showEntreprises'));
         }
 
         //generer HTML du form
@@ -80,7 +80,7 @@ class EntreprisesController extends Controller
             $this->get('session')->getFlashBag()->add('notice','Entreprise ('.$entreprise->getNomentreprise().') modifiée !');
 
             // Retourne form de la liste des entreprises
-            return $this->redirect($this->generateUrl('showEntreprise'));
+            return $this->redirect($this->generateUrl('showEntreprises'));
 
         }
 

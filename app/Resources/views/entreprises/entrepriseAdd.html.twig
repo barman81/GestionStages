@@ -36,6 +36,13 @@
         {{ form_errors(form.telentreprise) }}
     </div>
 
+    <div class="form-check form-inline row">
+        {{ form_label(form.codedomaine, "Domaine(s) d'activité", {'label_attr': {'class': "col-4"}}) }}
+
+        {{ form_widget(form.codedomaine, {'attr': {'class': "form-check-input form-check-inline"}}) }}
+
+        {{ form_errors(form.codedomaine) }}
+    </div>
 
     <div class="btn-group" role="group" aria-label="...">
         <button type="submit" class="btn btn-primary" >Valider</button>

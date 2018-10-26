@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -22,7 +23,13 @@ class EntreprisesType extends AbstractType
             ->add('adresseentreprise', TextType::class)
             ->add('villeentreprise', TextType::class)
             ->add('codepostalentreprise', TextType::class)
-            ->add('telentreprise',TelType::class);
+            ->add('telentreprise',TelType::class)
+            ->add('codedomaine',EntityType::class, array(
+                'class' => 'AppBundle:Domaineactivite',
+                'choice_label' => 'nomdomaine',
+                'multiple' => true,
+                'expanded' => true,
+            ));
     }/**
      * {@inheritdoc}
      */
