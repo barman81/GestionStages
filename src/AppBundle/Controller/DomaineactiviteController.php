@@ -57,16 +57,6 @@ class DomaineactiviteController extends Controller
 
     }
 
-    /**
-     *
-     * @Route("/domaineactivite/show", name="showDomaineActivite")
-     *
-     */
-    public function showDomaineActivite(){
-        $domainesActivites = $this->getDoctrine()->getRepository('AppBundle:Domaineactivite')->findAll();
-
-        return $this->render('domainesActivites/domainesActivitesShow.html.twig',['domainesActivites'=>$domainesActivites]);
-    }
 
     /**
      * @param Domaineactivite $domaineactivite
@@ -104,6 +94,7 @@ class DomaineactiviteController extends Controller
         return $this->render('domainesActivites/domainesActivitesAdd.html.twig', array('form'=>$formView));
     }
 
+
     /**
      * @param Domaineactivite $domaineactivite
      * @return Response
@@ -122,5 +113,32 @@ class DomaineactiviteController extends Controller
         //Retourne form de la liste des domaines d'activités
         return $this->redirect($this->generateUrl('showDomaineActivite'));
     }
+
+
+    /**
+     *
+     * @Route("/domaineactivite/show", name="showDomaineActivite")
+     *
+     */
+    public function showDomaineActivite(){
+        $domainesActivites = $this->getDoctrine()->getRepository('AppBundle:Domaineactivite')->findAll();
+
+        return $this->render('domainesActivites/domainesActivitesShow.html.twig',['domainesActivites'=>$domainesActivites]);
+    }
+
+    /**
+     *
+     * @Route("/domaineactivite/list", name="showDomaineActivite")
+     *
+     */
+    public function showListDomaineActivite(){
+        $domainesActivites = $this->getDoctrine()->getRepository('AppBundle:Domaineactivite')->findAll();
+
+        return $this->render('domainesActivites/_listDomainesActivites.html.twig',['domainesActivites'=>$domainesActivites]);
+    }
+
+
+
+
 
 }
