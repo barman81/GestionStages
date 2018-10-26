@@ -310,4 +310,33 @@ class Entreprises
     {
         return $this->codedomaine;
     }
+    /**
+     * @var boolean
+     */
+    private $blacklister = '0';
+
+
+    /**
+     * Set blacklister
+     *
+     * @param boolean $blacklister
+     *
+     * @return Entreprises
+     */
+    public function setBlacklister($blacklister)
+    {
+        $this->blacklister = $blacklister;
+
+        return $this;
+    }
+
+    /**
+     * Get blacklister
+     *
+     * @return boolean
+     */
+    public function getBlacklister()
+    {
+        return $this->blacklister;
+    }
 }

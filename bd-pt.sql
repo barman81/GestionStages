@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 25 oct. 2018 à 08:59
+-- Généré le :  ven. 26 oct. 2018 à 11:08
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -190,18 +190,19 @@ CREATE TABLE IF NOT EXISTS `entreprises` (
   `villeEntreprise` varchar(30) NOT NULL,
   `codePostalEntreprise` int(5) NOT NULL,
   `telEntreprise` char(14) NOT NULL,
+  `blacklister` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`codeEntreprise`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `entreprises`
 --
 
-INSERT INTO `entreprises` (`codeEntreprise`, `nomEntreprise`, `adresseEntreprise`, `villeEntreprise`, `codePostalEntreprise`, `telEntreprise`) VALUES
-(1, 'ToHero', '1 rue Emile Ain', 'Montpellier', 34090, '0642520665'),
-(3, 'Hyppocampe', '2 Avenue de Lamere', 'Valras', 34420, '785351565'),
-(4, 'CGI', '8 rue Georges Freche', 'Montpellier', 34096, '0658653145'),
-(5, 'Kaliop', '7 rue Ponpidou', 'Montpellier', 34090, '04.95.45.65.23');
+INSERT INTO `entreprises` (`codeEntreprise`, `nomEntreprise`, `adresseEntreprise`, `villeEntreprise`, `codePostalEntreprise`, `telEntreprise`, `blacklister`) VALUES
+(1, 'ToHero', '1 rue Emile Ain', 'Montpellier', 34090, '0642520665', 1),
+(4, 'CGI', '8 rue Georges Freche', 'Montpellier', 34096, '0658653145', 0),
+(5, 'Kaliop', '7 rue Ponpidou', 'Montpellier', 34090, '04.95.45.65.23', 0),
+(6, 'Cap Gemini', '25 avenue polichon', 'Montpellier', 34090, '0685956535', 0);
 
 -- --------------------------------------------------------
 
