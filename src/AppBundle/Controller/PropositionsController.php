@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Classes;
 use AppBundle\Entity\Domaineactivite;
 use AppBundle\Entity\Propositions;
 use AppBundle\Form\PropositionsType;
@@ -69,4 +70,5 @@ class PropositionsController extends Controller
 
         return $this->render('propositionsShow.html.twig',['propositions' => $propositions, 'domaineActivites'=>$domaineAct]);
     }
+
 }
