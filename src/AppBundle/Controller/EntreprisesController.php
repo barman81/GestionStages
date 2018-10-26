@@ -72,7 +72,7 @@ class EntreprisesController extends Controller
 
         if($form->isSubmitted()){
 
-            //on enregistre le domaine d'activité dans la bdd
+            //on enregistre l'entreprise dans la bdd
             $em = $this-> getDoctrine()->getManager();
             $em->flush();
 
