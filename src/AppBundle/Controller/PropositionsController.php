@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Domaineactivite;
 use AppBundle\Entity\Propositions;
 use AppBundle\Form\PropositionsType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -59,12 +60,13 @@ class PropositionsController extends Controller
             ->getRepository(Propositions::class);
 
         $query = $repository->createQueryBuilder('p')
-	        ->where('p.codeetat = 2')
+	        ->where('p.codeetat = 1')
 	        ->orderBy('p.dateajout', 'DESC')
 	        ->getQuery();
+        $domaineAct = $this->getDoctrine()->getRepository(Domaineactivite::class)->findAll();
 
         $propositions = $query->getResult();
 
-        return $this->render('propositionsShow.html.twig',['propositions' => $propositions]);
+        return $this->render('propositionsShow.html.twig',['propositions' => $propositions, 'domaineActivites'=>$domaineAct]);
     }
 }

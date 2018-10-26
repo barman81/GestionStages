@@ -12,7 +12,7 @@
             <div class="col-md-8">
 
                 <h1 class="my-4">Lister les Propositions</h1>
-                {% for uneProposition in propositions  %}
+                {% for uneProposition in propositions %}
                 <!-- Blog Post -->
                 <div class="card mb-4">
                     <div class="card-body">
@@ -61,28 +61,11 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <ul class="list-unstyled mb-0">
+                                    {% for unDomaineActivite in domaineActivites  %}
                                     <li>
-                                        <a href="#"></a>
+                                        <a href="#">{{ unDomaineActivite.nomdomaine }} </a>
                                     </li>
-                                    <li>
-                                        <a href="#">HTML</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Freebies</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li>
-                                        <a href="#">JavaScript</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">CSS</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Tutorials</a>
-                                    </li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>
