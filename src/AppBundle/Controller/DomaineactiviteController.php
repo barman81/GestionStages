@@ -16,6 +16,7 @@ class DomaineactiviteController extends Controller
      *
      * @Route("/domaineactivite/add", name="addDomaineActivite")
      *
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      *
      */
@@ -23,24 +24,27 @@ class DomaineactiviteController extends Controller
     public function addAction(Request $request)
     {
         //On crée un nouveau domaine d'activité
-        $domaineAct = new Domaineactivite();
+        $domaineactivite = new Domaineactivite();
 
         //On récupère le form
-        $form = $this->createForm(DomaineactiviteType::class, $domaineAct);
+        $form = $this->createForm(DomaineactiviteType::class, $domaineactivite);
 
         $form->handleRequest($request);
 
         //si le formulaire a été soumis
 
-        if($form->isSubmitted()){
+        if($form->isSubmitted() && $form->isValid()){
 
             //on enregistre le domaine d'activité dans la bdd
             $em = $this-> getDoctrine()->getManager();
-            $em->persist($domaineAct);
+            $em->persist($domaineactivite);
             $em->flush();
 
-            //A la place d'une reponse, il faut renvoyer une vue ! (style avec la liste des domaines...)
-            return new Response('Domaine Ajouté !');
+            // On affiche message de validation dans le formulaire de redirection
+            $this->get('session')->getFlashBag()->add('notice','Le domaine ('.$domaineactivite->getNomdomaine().') est ajouté !');
+
+            //Retourne form de la liste des domaines d'activités
+            return $this->redirect($this->generateUrl('showDomaineActivite'));
 
         }
 
@@ -65,6 +69,8 @@ class DomaineactiviteController extends Controller
     }
 
     /**
+     * @param Domaineactivite $domaineactivite
+     * @param Request $request
      * @return Response
      * @Route("/domaineactivite/edit/{id}", name="editDomaineActivite")
      *
@@ -82,8 +88,11 @@ class DomaineactiviteController extends Controller
             $em = $this-> getDoctrine()->getManager();
             $em->flush();
 
-            //A la place d'une reponse, il faut renvoyer une vue ! (style avec la liste des domaines...)
-            return new Response('Domaine Modifié !');
+            // On affiche message de validation dans le formulaire de redirection
+            $this->get('session')->getFlashBag()->add('notice','Le domaine ('.$domaineactivite->getNomdomaine().') est modifié !');
+
+            //Retourne form de la liste des domaines d'activités
+            return $this->redirect($this->generateUrl('showDomaineActivite'));
 
         }
 
@@ -96,6 +105,7 @@ class DomaineactiviteController extends Controller
     }
 
     /**
+     * @param Domaineactivite $domaineactivite
      * @return Response
      * @Route("/domaineactivite/delete/{id}", name="deleteDomaineActivite")
      *
@@ -106,7 +116,11 @@ class DomaineactiviteController extends Controller
         $em = $this-> getDoctrine()->getManager();
         $em->remove($domaineactivite);
         $em->flush();
-        return new Response('Domaine Supprimé !');
+        // On affiche message de validation dans le formulaire de redirection
+        $this->get('session')->getFlashBag()->add('notice','Le domaine ('.$domaineactivite->getNomdomaine().') est supprimé !');
+
+        //Retourne form de la liste des domaines d'activités
+        return $this->redirect($this->generateUrl('showDomaineActivite'));
     }
 
 }
