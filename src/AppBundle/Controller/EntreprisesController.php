@@ -95,21 +95,40 @@ class EntreprisesController extends Controller
     /**
      * @param Entreprises $entreprise
      * @return Response
-     * @Route("/entreprises/delete/{id}", name="deleteEntreprise")
+     * @Route("/entreprises/blacklist/{id}", name="blackListEntreprise")
      *
      */
 
-    public function delete(Entreprises $entreprise){
+    public function blackListEntreprise(Entreprises $entreprise){
+        //modification de l'attribut blacklist de l'objet
+        $entreprise->setBlacklister(1);
+        //enregistrement en BDD de la modification
         $em = $this-> getDoctrine()->getManager();
-        $em->remove($entreprise);
         $em->flush();
-        $this->get('session')->getFlashBag()->add('notice','Entreprise ('.$entreprise->getNomentreprise().') supprimée !');
-        return $this->redirect($this->generateUrl('showEntreprise'));
+        $this->get('session')->getFlashBag()->add('notice','L\'Entreprise ('.$entreprise->getNomentreprise().') est dans la BlackList !');
+        return $this->redirect($this->generateUrl('showEntreprisesBlackList'));
+    }
+
+    /**
+     * @param Entreprises $entreprise
+     * @return Response
+     * @Route("/entreprises/noblacklist/{id}", name="noBlackListEntreprise")
+     *
+     */
+
+    public function noblackListEntreprise(Entreprises $entreprise){
+        //modification de l'attribut blacklist de l'objet
+        $entreprise->setBlacklister(0);
+        //enregistrement en BDD de la modification
+        $em = $this-> getDoctrine()->getManager();
+        $em->flush();
+        $this->get('session')->getFlashBag()->add('notice','L\'Entreprise ('.$entreprise->getNomentreprise().') est revenue dans la liste !');
+        return $this->redirect($this->generateUrl('showEntreprises'));
     }
 
     /**
      *
-     * @Route("/entreprises/show", name="showEntreprise")
+     * @Route("/entreprises/show", name="showEntreprises")
      *
      * @return Response
      *
@@ -120,11 +139,33 @@ class EntreprisesController extends Controller
             ->getRepository(Entreprises::class);
 
         $query = $repository->createQueryBuilder('e')
+            ->where('e.blacklister = 0')
             ->getQuery();
 
         $entreprises = $query->getResult();
 
         return $this->render('entreprises/entreprisesShow.html.twig',['entreprises' => $entreprises]);
+    }
+
+    /**
+     *
+     * @Route("/entreprises/showBlackList", name="showEntreprisesBlackList")
+     *
+     * @return Response
+     *
+     */
+    public function showEntreprisesBlackList()
+    {
+        $repository = $this->getDoctrine()
+            ->getRepository(Entreprises::class);
+
+        $query = $repository->createQueryBuilder('e')
+            ->where('e.blacklister = 1')
+            ->getQuery();
+
+        $entreprises = $query->getResult();
+
+        return $this->render('entreprises/entreprisesShowBlackList.html.twig',['entreprises' => $entreprises]);
     }
 
 }
