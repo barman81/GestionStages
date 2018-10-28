@@ -46,7 +46,7 @@ class EntreprisesController extends Controller
             //var_dump($em);
 
             // On affiche message de validation dans le formulaire de redirection
-            $this->get('session')->getFlashBag()->add('notice','Entreprise ('.$entreprise->getNomentreprise().') ajouté !');
+            $this->get('session')->getFlashBag()->add('notice','Entreprise ('.$entreprise->getNomentreprise().') ajoutée !');
             return $this->redirect($this->generateUrl('showEntreprises'));
         }
 
