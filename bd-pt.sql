@@ -225,7 +225,8 @@ INSERT INTO `etat` (`codeEtat`, `nomEtat`) VALUES
 (1, 'En attente de validation'),
 (2, 'Validé'),
 (3, 'Affecté'),
-(4, 'Archivé');
+(4, 'Archivé'),
+(5, 'Refusé');
 
 -- --------------------------------------------------------
 
