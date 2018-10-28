@@ -61,7 +61,7 @@ class PropositionsController extends Controller
             ->getRepository(Propositions::class);
 
         $query = $repository->createQueryBuilder('p')
-	        ->where('p.codeetat = 1')
+	        ->where('p.codeetat = 2')
 	        ->orderBy('p.dateajout', 'DESC')
 	        ->getQuery();
         $domaineAct = $this->getDoctrine()->getRepository(Domaineactivite::class)->findAll();

@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Poster une offre{% endblock %}
+{% block title %}Liste des offres{% endblock %}
 
 {% block body %}
     <!-- Page Content -->
@@ -12,31 +12,28 @@
             <div class="col-md-8">
 
                 <h1 class="my-4">Lister les Propositions</h1>
-                {% for uneProposition in propositions %}
-                <!-- Blog Post -->
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h2 class="card-title">{{ uneProposition.titreproposition }}</h2>
-                        <p class="card-text">{{ uneProposition.descriptionproposition }}</p>
-                        <p></p>
-                        <a href="show/{{ uneProposition.codeproposition}}" class="btn btn-primary">Read More &rarr;</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        Posted on January 1, 2017 by
-                        <a href="#">Start Bootstrap</a>
-                    </div>
-                </div>
-                {% endfor %}
-                <!-- Pagination -->
-                <ul class="pagination justify-content-center mb-4">
-                    <li class="page-item">
-                        <a class="page-link" href="#">&larr; Older</a>
-                    </li>
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#">Newer &rarr;</a>
-                    </li>
-                </ul>
-
+                <table id="propositionsTable" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Titre</th>
+                            <th>Entreprise</th>
+                            <th>Description</th>
+                            <th>Postée le</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for uneProposition in propositions  %}
+                            <tr>
+                                <td>{{ uneProposition.titreproposition }}</td>
+                                <td></td>
+                                <td>{{ uneProposition.descriptionproposition }}</td>
+                                <td></td>
+                                <td><a href="{{ path('afficherPropositionbyid', {'id': uneProposition.codeproposition}) }}">Lire plus...</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
 
             <!-- Sidebar Widgets Column -->
@@ -88,4 +85,15 @@
 
     </div>
     <!-- /.container -->
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready( function () {
+            $('#propositionsTable').DataTable({
+                "language": {
+                    "url": "{{ asset('js/datatables-french.json') }}"
+                }
+            });
+        });
+    </script>
 {% endblock %}
