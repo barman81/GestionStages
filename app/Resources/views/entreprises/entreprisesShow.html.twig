@@ -30,7 +30,10 @@
                                         <i class="fa fa-edit" aria-hidden="true"></i> Editer
                                     </a>
                                     <a href="{{ path('blackListEntreprise', {'id':uneEntreprise.codeentreprise}) }}" class="btn btn-sm btn-warning">
-                                        <i class="fa fa-edit" aria-hidden="true"></i> BlackList
+                                        <i class="fa fa-minus-circle" aria-hidden="true"></i> BlackList
+                                    </a>
+                                    <a href="{{ path('showContacts', {'id':uneEntreprise.codeentreprise}) }}" class="btn btn-sm btn-info">
+                                        <i class="fa fa-address-book" aria-hidden="true"></i> Contacts
                                     </a>
                                 </div>
                             </td>
