@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Contacts
@@ -16,6 +17,9 @@ class Contacts
      * @var string
      *
      * @ORM\Column(name="nomContact", type="string", length=30, nullable=false)
+     *
+     * @Assert\NotBlank(message="Le nom est obligatoire")
+     *
      */
     private $nomcontact;
 
@@ -23,6 +27,9 @@ class Contacts
      * @var string
      *
      * @ORM\Column(name="prenomContact", type="string", length=30, nullable=false)
+     *
+     * @Assert\NotBlank(message="Le prénom est obligatoire")
+     *
      */
     private $prenomcontact;
 
@@ -30,6 +37,12 @@ class Contacts
      * @var string
      *
      * @ORM\Column(name="mailContact", type="string", length=30, nullable=false)
+     *
+     * @Assert\Regex(
+     *      pattern= "#^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$#",
+     *     match=true,
+     *     message= "Le format de l'email n'est pas respecté"
+     * )
      */
     private $mailcontact;
 
@@ -37,6 +50,12 @@ class Contacts
      * @var string
      *
      * @ORM\Column(name="telContact", type="string", length=10, nullable=false)
+     *
+     * @Assert\Regex(
+     *      pattern= "#^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$#",
+     *     match=true,
+     *     message= "Le format du numéro de téléphone n'est pas respecté"
+     * )
      */
     private $telcontact;
 
