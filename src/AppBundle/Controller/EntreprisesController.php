@@ -38,12 +38,11 @@ class EntreprisesController extends Controller
         if($form->isSubmitted() && $form->isValid()){
             // on enregistre l'entreprise en BDD
             $em = $this->getDoctrine()->getManager();
-            //$_SESSION['entreprise'] = $entreprise;
+
             $em->persist($entreprise);
             $em->flush();
 
-            //var_dump($_SESSION);
-            //var_dump($em);
+
 
             // On affiche message de validation dans le formulaire de redirection
             $this->get('session')->getFlashBag()->add('notice','Entreprise ('.$entreprise->getNomentreprise().') ajouté !');
@@ -106,7 +105,7 @@ class EntreprisesController extends Controller
         $em = $this-> getDoctrine()->getManager();
         $em->flush();
         $this->get('session')->getFlashBag()->add('notice','L\'Entreprise ('.$entreprise->getNomentreprise().') est dans la BlackList !');
-        return $this->redirect($this->generateUrl('showEntreprisesBlackList'));
+        return $this->redirect($this->generateUrl('showEntreprises'));
     }
 
     /**
@@ -123,7 +122,7 @@ class EntreprisesController extends Controller
         $em = $this-> getDoctrine()->getManager();
         $em->flush();
         $this->get('session')->getFlashBag()->add('notice','L\'Entreprise ('.$entreprise->getNomentreprise().') est revenue dans la liste !');
-        return $this->redirect($this->generateUrl('showEntreprises'));
+        return $this->redirect($this->generateUrl('showEntreprisesBlackList'));
     }
 
     /**

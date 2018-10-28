@@ -26,8 +26,8 @@
                             <td>{{ uneEntreprise.nomentreprise}}</td>
                             <td class="text-right">
                                 <div class="item-actions">
-                                    <a href="{{ path('noBlackListEntreprise', {'id':uneEntreprise.codeentreprise}) }}" class="btn btn-sm btn-success">
-                                        <i class="fa fa-edit" aria-hidden="true"></i> Non BlackList
+                                    <a href="{{ path('noBlackListEntreprise', {'id':uneEntreprise.codeentreprise}) }}" class="btn btn-sm btn-dark">
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Non BlackList
                                     </a>
                                 </div>
                             </td>
@@ -40,7 +40,10 @@
 
             <div class="col-md-4">
                 <div class="card my-4">
-                    <h5 class="card-header"><a href="{{ path('showEntreprises') }}">Liste Entreprises</a></h5>
+                    <a href="{{ path('showEntreprises') }}" class="btn btn-sm btn-success">
+                        <i class="fa fa-mail-reply" aria-hidden="true"></i> Retour Entreprises
+                    </a>
+
                 </div>
 
             </div>
