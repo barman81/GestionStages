@@ -70,7 +70,7 @@ class ContactController extends Controller
             $this->get('session')->getFlashBag()->add('notice','Le contact ('.$contact->getNomcontact(). " " . $contact->getPrenomcontact() . ') est ajouté !');
 
             //Retourne form de la liste des contacts de l'entreprise
-            return $this->render('contacts/contactsShow.html.twig',['contacts' => $entreprise->getCodecontact()]);
+            return $this->render('contacts/contactsShow.html.twig',['contacts' => $entreprise->getCodecontact(), 'entreprise' => $entreprise]);
 
         }
 
@@ -97,6 +97,17 @@ class ContactController extends Controller
 
             $form->handleRequest($request);
 
+        $repository = $this->getDoctrine()
+            ->getRepository(Entreprises::class);
+
+
+        $entreprise = $repository->createQueryBuilder('e')
+            ->where('e.codeentreprise = :entreprise')
+            ->setParameter('entreprise', $session->get('entreprise'))
+            ->getQuery()
+            // Cette ligne permet de récupérer directement l'objet et non un tableau avec l'objet à l'interieur
+            ->getOneOrNullResult();
+
             //si le formulaire a été soumis
 
             if($form->isSubmitted() && $form->isValid()){
@@ -108,20 +119,8 @@ class ContactController extends Controller
                 //Envoi un message de validation
                 $this->get('session')->getFlashBag()->add('notice','Contact ('.$contact->getNomcontact() . " " . $contact->getPrenomcontact() .') modifié !');
 
-
-                $repository = $this->getDoctrine()
-                    ->getRepository(Entreprises::class);
-
-
-                $entreprise = $repository->createQueryBuilder('e')
-                    ->where('e.codeentreprise = :entreprise')
-                    ->setParameter('entreprise', $session->get('entreprise'))
-                    ->getQuery()
-                    // Cette ligne permet de récupérer directement l'objet et non un tableau avec l'objet à l'interieur
-                    ->getOneOrNullResult();
-
                 // Retourne form de la liste des contacts de l'entreprise
-                return $this->render('contacts/contactsShow.html.twig',['contacts' => $entreprise->getCodecontact()]);
+                return $this->render('contacts/contactsShow.html.twig',['contacts' => $entreprise->getCodecontact(), 'entreprise' => $entreprise]);
 
             }
 
@@ -130,7 +129,7 @@ class ContactController extends Controller
             $formView = $form->createView();
 
             //on rend la vue
-            return $this->render('contacts/contactAdd.html.twig', array('form'=>$formView));
+            return $this->render('contacts/contactAdd.html.twig', array('form'=>$formView, 'entreprise' => $entreprise));
     }
 
     /**
@@ -161,7 +160,7 @@ class ContactController extends Controller
         $this->get('session')->getFlashBag()->add('notice','Le contact (' . $contact->getNomcontact() . ' ' . $contact->getPrenomcontact() . ') à été supprimé !');
 
         //Retourne form de la liste des contact de l'entreprise
-        return $this->render('contacts/contactsShow.html.twig', ['contacts'=>$entreprise->getCodecontact()] );
+        return $this->render('contacts/contactsShow.html.twig', ['contacts'=>$entreprise->getCodecontact(), 'entreprise' => $entreprise] );
 
     }
 
