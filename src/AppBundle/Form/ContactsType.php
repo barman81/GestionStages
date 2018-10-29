@@ -15,11 +15,24 @@ class ContactsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('nomcontact', TextType::class)
-            ->add('prenomcontact',TextType::class)
-            ->add('mailcontact', TextType::class )
-            ->add('telcontact', TelType::class);
+        // si on edit le contact
+        if ($options['data']->getcodecontact() != null){
+            $builder
+                ->add('nomcontact', TextType::class, array('disabled' => true))
+                ->add('prenomcontact',TextType::class, array('disabled' => true))
+                ->add('mailcontact', TextType::class )
+                ->add('telcontact', TelType::class);
+        }
+        //si on ajoute un contact
+        else
+        {
+            $builder
+                ->add('nomcontact', TextType::class)
+                ->add('prenomcontact',TextType::class)
+                ->add('mailcontact', TextType::class )
+                ->add('telcontact', TelType::class);
+        }
+
     }/**
      * {@inheritdoc}
      */
