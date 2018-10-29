@@ -151,10 +151,9 @@ class ContactController extends Controller
             ->getOneOrNullResult();
 
 
-        // On enleve la liasion entre le contact et l'entreprise
-        $entreprise->removeCodecontact($contact);
-        // On sauvegarde modifications
+        // On supprime et sauvegarde modifications
         $em = $this-> getDoctrine()->getManager();
+        $em->remove($contact);
         $em->flush();
         // On affiche message de validation dans le formulaire de redirection
         $this->get('session')->getFlashBag()->add('notice','Le contact (' . $contact->getNomcontact() . ' ' . $contact->getPrenomcontact() . ') à été supprimé !');
