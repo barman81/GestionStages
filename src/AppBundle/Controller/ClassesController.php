@@ -68,7 +68,7 @@ class ClassesController extends Controller
 
         //si le formulaire a été soumis
 
-        if($form->isSubmitted()){
+        if($form->isSubmitted() && $form->isValid()){
 
             //on enregistre la classe dans la bdd
             $em = $this-> getDoctrine()->getManager();
