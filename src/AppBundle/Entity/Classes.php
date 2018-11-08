@@ -20,6 +20,13 @@ class Classes
     private $nomclasse;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=50, nullable=false)
+     */
+    private $description;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="codeClasse", type="integer")
@@ -43,14 +50,35 @@ class Classes
         $this->codeproposition = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-
     /**
-     * Set nomclasse
+     * Set description
      *
-     * @param string $nomclasse
-     *
+     * @param string $description
      * @return Classes
      */
+    public function setdescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+    /**
+ * Set nomclasse
+ *
+ * @param string $nomclasse
+ *
+ * @return Classes
+ */
     public function setNomclasse($nomclasse)
     {
         $this->nomclasse = $nomclasse;
