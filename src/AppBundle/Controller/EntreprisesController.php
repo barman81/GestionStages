@@ -78,7 +78,7 @@ class EntreprisesController extends Controller
 
         //si le formulaire a été soumis
 
-        if($form->isSubmitted()){
+        if($form->isSubmitted() && $form->isValid()){
             // Si au moins un domaine et selectionner
             if(count($form->getData()->getCodeDomaine()) != 0){
                 //on enregistre l'entreprise dans la bdd
