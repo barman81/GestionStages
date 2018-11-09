@@ -1,5 +1,5 @@
 {
-    "name": "mael/.checkout",
+    "name": "Plateforme de gestion des stage",
     "license": "proprietary",
     "type": "project",
     "autoload": {
@@ -36,7 +36,7 @@
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
-        "symfony/phpunit-bridge": "^3.0"
+        "symfony/phpunit-bridge": "^4.1"
     },
     "scripts": {
         "symfony-scripts": [
